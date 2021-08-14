@@ -287,7 +287,7 @@ cleanup(async function (err) {
       defer: true,
       fn: setData
     });
-      suite.add('get', getData);
+    suite.add('get', getData);
     suite.add('plainJSON', plainJSON);
     suite.add('getBinary', getBinary);
     suite.add('getBinaryFast', getBinaryFast);

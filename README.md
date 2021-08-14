@@ -1,1 +1,1 @@
-This is for benchmarking different key-value stores and databases. For the redis benchmarks, a local redis server must be installed.
+This is for benchmarking different key-value stores and databases. For the redis benchmarks, a local redis server must be installed. If anyone has any tips for tuning or improving the performance of the dbs in this benchmarks, would be happy to include that for the sake of fair comparison.
