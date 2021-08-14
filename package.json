@@ -1,0 +1,38 @@
+{
+    "name": "db-benchmark",
+    "author": "Kris Zyp",
+    "version": "0.1.0",
+    "description": "Key-value/database benchmarking",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "http://github.com/kriszyp/db-benchmark"
+    },
+    "keywords": [
+      "lmdb",
+      "leveldb",
+      "sqlite",
+      "database",
+      "mdb",
+      "lightning"
+    ],
+    "type": "commonjs",
+    "main": "./index.js",
+    "scripts": {
+      "benchmark": "node --turbo-fast-api-calls ./index.js"
+    },
+    "dependencies": {
+      "leveldown": "^6.0.1",
+      "levelup": "^5.0.1",
+      "mkdirp": "^1.0.4",
+      "redis": "^3.1.2",
+      "sqlite3": "^5.0.2",
+      "lmdb": "1.6.6"
+    },
+    "devDependencies": {
+      "@types/node": "latest",
+      "benchmark": "^2.1.4",
+      "rimraf": "^3.0.2"
+    }
+  }
+  
