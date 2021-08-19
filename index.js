@@ -14,7 +14,8 @@ var suite = new benchmark.Suite();
 var levelup = require('levelup')
 var leveldown = require('leveldown')
 
-var leveldb = levelup(leveldown('./leveldb'))
+//var leveldb = levelup(leveldown('./leveldb'))
+var leveldb = leveldown('./leveldb')
 
 
 const redis = require("redis");
@@ -36,7 +37,7 @@ const { open, lmdbNativeFunctions } = require('lmdb');
 var env;
 var dbi;
 var keys = [];
-var total = 100;
+var total = 10000;
 var store
 let data = {
   name: 'test',
@@ -240,6 +241,7 @@ async function setup() {
   await new Promise(resolve => putStmt = db.prepare("UPDATE test SET b = ?, c = ?, d = ?, e = ?, f = ?, g = ?, h = ?, i = ?, j = ? WHERE id = ?", resolve));
   await new Promise(resolve => getStmt = db.prepare("SELECT id, b, c, d, e, f, g, h, i, j FROM test WHERE id = ?", resolve));
   let lastSqlPromise
+  console.log('opened level', await new Promise(resolve => leveldb.open({ compression: false }, resolve)))
   for (let i = 0; i < total; i++) {
     lastPromise = store.put(i, data)
     lastSqlPromise = new Promise(resolve => insertStmt.run([i,2,3,4,5,6,7,8,9,10], resolve))
@@ -258,14 +260,14 @@ cleanup(async function (err) {
         throw err;
     }
     await setup();
-    suite.add('put redis', {
+    /*suite.add('put redis', {
       defer: true,
       fn: setDataRedis
     });
     suite.add('get redis', {
       defer: true,
       fn: getDataRedis
-    });
+    });*/
 
     suite.add('put level', {
       defer: true,
