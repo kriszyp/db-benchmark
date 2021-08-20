@@ -14,8 +14,8 @@ var suite = new benchmark.Suite();
 var levelup = require('levelup')
 var leveldown = require('leveldown')
 
-//var leveldb = levelup(leveldown('./leveldb'))
-var leveldb = leveldown('./leveldb')
+var leveldb = levelup(leveldown('./leveldb'))
+//var leveldb = leveldown('./leveldb')
 
 
 const redis = require("redis");
@@ -27,8 +27,8 @@ client.on("error", function(error) {
 
 
 
-var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database(':memory:');
+var sqlite3 = require('sqlite3');
+var db = new sqlite3.Database('');
 var putStmt, getStmt, insertStmt
 
 
@@ -260,14 +260,14 @@ cleanup(async function (err) {
         throw err;
     }
     await setup();
-    /*suite.add('put redis', {
+    suite.add('put redis', {
       defer: true,
       fn: setDataRedis
     });
     suite.add('get redis', {
       defer: true,
       fn: getDataRedis
-    });*/
+    });
 
     suite.add('put level', {
       defer: true,
